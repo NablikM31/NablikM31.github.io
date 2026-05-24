@@ -2,42 +2,106 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Nablik | Matemáticas & Código</title>
+    <title>Nablik_ | Explorando la Matemática</title>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0d1117; /* Fondo oscuro elegante */
-            color: #c9d1d9;
-            max-width: 850px;
-            margin: 40px auto;
-            padding: 0 20px;
-            line-height: 1.6;
+            background-color: #0a0e14; /* Fondo negro profundo */
+            color: #eceff4;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        h1 { color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 10px; font-size: 2.5rem; }
-        h2 { color: #58a6ff; margin-top: 40px; }
-        .box { background-color: #161b22; padding: 20px; border-radius: 6px; border: 1px solid #30363d; margin-bottom: 20px; }
-        .destacado { color: #ff7b72; font-weight: bold; }
+
+        header { 
+            text-align: center; 
+            margin-bottom: 50px; 
+            border-bottom: 1px solid #1f2937;
+            padding-bottom: 30px;
+        }
+        
+        h1 { 
+            font-size: 3.5rem; 
+            font-weight: 800; 
+            letter-spacing: -2px; 
+            margin-bottom: 5px; 
+            color: #81a1c1;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #111827; /* Gris oscuro para las tarjetas */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            transition: transform 0.2s, border-color 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border: 1px solid #1f2937;
+        }
+        
+        .card:hover { 
+            transform: scale(1.03); 
+            border-color: #81a1c1;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #1f2937;
+            background-color: #000;
+        }
+
+        .card-content { padding: 20px; }
+        .card-title { font-size: 1.3rem; font-weight: 700; margin: 0 0 10px 0; color: #88c0d0; }
+        .card-desc { font-size: 0.95rem; color: #9ca3af; margin: 0; line-height: 1.5; }
+        .math-preview { 
+            margin-top: 15px; 
+            font-size: 0.95rem; 
+            color: #a3be8c; 
+            font-family: 'Times New Roman', serif;
+        }
     </style>
 </head>
 <body>
 
-    <h1>nablik_</h1>
-    <p>Notas de física, matemáticas avanzadas y desarrollo de software.</p>
+    <header>
+        <h1>nablik_</h1>
+        <p style="color: #4c566a;">Física teórica, matemáticas avanzadas y optimización computacional.</p>
+    </header>
 
-    <div class="box">
-        <h2>01. Cálculo Multivariable & Campos</h2>
-        <p>El nombre del sitio proviene del operador matemático <span class="destacado">Nabla</span> (\(\nabla\)). En coordenadas cartesianas, define el gradiente de un campo escalar:</p>
-        <p>$$\nabla f(x, y, z) = \frac{\partial f}{\partial x}\mathbf{i} + \frac{\partial f}{\partial y}\mathbf{j} + \frac{\partial f}{\partial z}\mathbf{k}$$</p>
-    </div>
+    <div class="video-grid">
 
-    <div class="box">
-        <h2>02. Próximos Bloques</h2>
-        <ul>
-            <li>Estructuras lógicas y reducción de diagramas lógicos.</li>
-            <li>Análisis de Espacios Duales (Álgebra Lineal).</li>
-            <li>Mecánica Clásica computacional.</li>
-        </ul>
+        <a href="apuntes-calculo4.pdf" target="_blank" class="card">
+            <img src="thumb-calculo.jpg" alt="Visualización Cálculo Multivariable" class="thumbnail">
+            <div class="card-content">
+                <h2 class="card-title">La Geometría del Operador Nabla</h2>
+                <p class="card-desc">Análisis de campos vectoriales, gradientes y teoremas fundamentales de integración en $\mathbb{R}^n$.</p>
+                <div class="math-preview">
+                    $$\nabla \times \mathbf{F} = \mathbf{0}$$
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="card">
+            <img src="thumb-mecanica.jpg" alt="Visualización Mecánica Clásica" class="thumbnail">
+            <div class="card-content">
+                <h2 class="card-title">Mecánica Analítica & Mínima Acción</h2>
+                <p class="card-desc">Formulación lagrangiana, espacios de fase y la optimización de trayectorias en sistemas dinámicos.</p>
+                <div class="math-preview">
+                    $$\delta \int_{t_1}^{t_2} L(q, \dot{q}, t) \, dt = 0$$
+                </div>
+            </div>
+        </a>
+
     </div>
 
 </body>
