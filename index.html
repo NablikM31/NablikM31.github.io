@@ -2,107 +2,192 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Nablik_ | Explorando la Matemática</title>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nablik</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* --- ESTILOS GENERALES Y ESCALA DE GRISES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0a0e14; /* Fondo negro profundo */
-            color: #eceff4;
-            max-width: 1000px;
+            background-color: #121212; /* Fondo casi negro */
+            color: #ffffff; /* Texto blanco puro */
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- ENCABEZADO --- */
+        header {
+            text-align: center;
+            padding: 4rem 1rem 2rem 1rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem); /* Se adapta a móvil y PC */
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- CONTENEDOR DE SECCIONES (GRID) --- */
+        main {
+            flex-grow: 1;
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-        }
-
-        header { 
-            text-align: center; 
-            margin-bottom: 50px; 
-            border-bottom: 1px solid #1f2937;
-            padding-bottom: 30px;
-        }
-        
-        h1 { 
-            font-size: 3.5rem; 
-            font-weight: 800; 
-            letter-spacing: -2px; 
-            margin-bottom: 5px; 
-            color: #81a1c1;
-        }
-        
-        .video-grid {
+            padding: 2rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
+        /* --- BLOQUES DE CONTENIDO --- */
         .card {
-            background: #111827; /* Gris oscuro para las tarjetas */
+            background-color: #1e1e1e; /* Gris oscuro para contraste */
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            transition: transform 0.2s, border-color 0.2s;
             text-decoration: none;
-            color: inherit;
-            display: block;
-            border: 1px solid #1f2937;
-        }
-        
-        .card:hover { 
-            transform: scale(1.03); 
-            border-color: #81a1c1;
+            color: #ffffff;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+            display: flex;
+            flex-direction: column;
         }
 
-        .thumbnail {
+        /* Retraso en la animación para que entren en cascada */
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Espacio para la imagen dentro del bloque */
+        .card-image {
             width: 100%;
             height: 200px;
+            background-color: #2a2a2a; /* Gris un poco más claro como placeholder */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 0.9rem;
             object-fit: cover;
-            border-bottom: 1px solid #1f2937;
-            background-color: #000;
         }
 
-        .card-content { padding: 20px; }
-        .card-title { font-size: 1.3rem; font-weight: 700; margin: 0 0 10px 0; color: #88c0d0; }
-        .card-desc { font-size: 0.95rem; color: #9ca3af; margin: 0; line-height: 1.5; }
-        .math-preview { 
-            margin-top: 15px; 
-            font-size: 0.95rem; 
-            color: #a3be8c; 
-            font-family: 'Times New Roman', serif;
+        .card-title {
+            padding: 1.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        /* --- PIE DE PÁGINA --- */
+        footer {
+            background-color: #0a0a0a;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-top: 1px solid #333;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.8s;
+            opacity: 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: #888;
+            font-size: 1.8rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+            transform: scale(1.2);
+        }
+
+        .copyright {
+            color: #666;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-family: sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* --- ANIMACIONES KEYFRAMES --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>nablik_</h1>
-        <p style="color: #4c566a;">Física teórica, matemáticas avanzadas y optimización computacional.</p>
+        <h1>Nablik</h1>
     </header>
 
-    <div class="video-grid">
-
-        <a href="apuntes-calculo4.pdf" target="_blank" class="card">
-            <img src="thumb-calculo.jpg" alt="Visualización Cálculo Multivariable" class="thumbnail">
-            <div class="card-content">
-                <h2 class="card-title">La Geometría del Operador Nabla</h2>
-                <p class="card-desc">Análisis de campos vectoriales, gradientes y teoremas fundamentales de integración en $\mathbb{R}^n$.</p>
-                <div class="math-preview">
-                    $$\nabla \times \mathbf{F} = \mathbf{0}$$
-                </div>
-            </div>
+    <main>
+        <a href="#" class="card">
+            <div class="card-image">
+                <i class="fa-solid fa-image fa-2x"></i> </div>
+            <div class="card-title">Notas de Física</div>
         </a>
 
         <a href="#" class="card">
-            <img src="thumb-mecanica.jpg" alt="Visualización Mecánica Clásica" class="thumbnail">
-            <div class="card-content">
-                <h2 class="card-title">Mecánica Analítica & Mínima Acción</h2>
-                <p class="card-desc">Formulación lagrangiana, espacios de fase y la optimización de trayectorias en sistemas dinámicos.</p>
-                <div class="math-preview">
-                    $$\delta \int_{t_1}^{t_2} L(q, \dot{q}, t) \, dt = 0$$
-                </div>
+            <div class="card-image">
+                <i class="fa-solid fa-image fa-2x"></i>
             </div>
+            <div class="card-title">Notas de Matemáticas</div>
         </a>
 
-    </div>
+        <a href="#" class="card">
+            <div class="card-image">
+                <i class="fa-solid fa-user fa-2x"></i>
+            </div>
+            <div class="card-title">quien soy yo? xddddd</div>
+        </a>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
+        <p class="copyright">&copy; 2026 Nablik. Todos los derechos reservados.</p>
+    </footer>
 
 </body>
 </html>
