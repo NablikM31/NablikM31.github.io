@@ -1,0 +1,746 @@
+/* ============================================================
+   NABLIK — style.css
+   Deep Space × Glassmorphism
+   Modular por clases · Sin selectores #ID en estilos de diseño
+   ============================================================ */
+
+/* ─── 1. VARIABLES & RESET ──────────────────────────────── */
+
+:root {
+  /* Acentos */
+  --accent:          #4f8ef7;       /* Azul vibrante principal           */
+  --accent-glow:     #4f8ef730;     /* Azul con baja opacidad (glow)     */
+  --accent-hover:    #3a78e0;       /* Azul más oscuro en hover          */
+
+  /* Fondos glassmorphism */
+  --glass-bg:        rgba(15, 20, 40, 0.55);   /* Fondo oscuro semitransparente */
+  --glass-border:    rgba(255, 255, 255, 0.10); /* Borde sutil luminoso          */
+  --glass-blur:      12px;
+
+  /* Texto */
+  --text-primary:    #f0f4ff;       /* Blanco ligeramente azulado        */
+  --text-secondary:  #8a9cc2;       /* Gris claro para textos de apoyo   */
+
+  /* Superficies */
+  --surface-dark:    rgba(8, 12, 28, 0.80);
+  --nav-height:      68px;
+
+  /* Tipografía */
+  --font-main:       'Inter', 'Segoe UI', sans-serif;
+
+  /* Radios */
+  --radius-sm:       8px;
+  --radius-md:       14px;
+  --radius-lg:       24px;
+
+  /* Transición base */
+  --transition:      0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Reset mínimo ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin:  0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:      var(--font-main);
+  font-size:        16px;
+  line-height:      1.65;
+  color:            var(--text-primary);
+  min-height:       100vh;
+
+  /* Fondo espacial fijo */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url('../assets/fondo.png');
+  background-attachment: fixed;
+  background-position:   center center;
+  background-repeat:     no-repeat;
+  background-size:       cover;
+
+  /* Fallback si la imagen no carga */
+  background-color: #050913;
+}
+
+/* ─── Imágenes ─── */
+img {
+  display:   block;
+  max-width: 100%;
+  height:    auto;
+}
+
+/* ─── Listas ─── */
+ul {
+  list-style: none;
+}
+
+/* ─── Reset de enlaces globales ─── */
+a {
+  color:           inherit;
+  text-decoration: none;
+  transition:      color var(--transition);
+}
+
+/* ─── Headings ─── */
+h1, h2, h3, h4 {
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+
+/* ─── 2. NAVBAR ─────────────────────────────────────────── */
+
+.navbar {
+  position:         fixed;
+  top:              0;
+  left:             0;
+  right:            0;
+  z-index:          1000;
+  height:           var(--nav-height);
+  display:          flex;
+  align-items:      center;
+  justify-content:  space-between;
+  padding:          0 2.5rem;
+  gap:              1.5rem;
+
+  background:       var(--glass-bg);
+  backdrop-filter:  blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-bottom:    1px solid var(--glass-border);
+}
+
+.logo {
+  font-size:   1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color:       var(--text-primary);
+  flex-shrink: 0;
+  transition:  color var(--transition);
+}
+
+.logo:hover {
+  color: var(--accent);
+}
+
+/* Nav links */
+.nav-links {
+  display:     flex;
+  align-items: center;
+  gap:         2rem;
+}
+
+.nav-links a {
+  font-size:     0.9rem;
+  font-weight:   600;
+  color:         var(--text-secondary);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding-bottom: 2px;
+  border-bottom:  2px solid transparent;
+  transition:     color var(--transition), border-color var(--transition);
+}
+
+.nav-links a:hover {
+  color:        var(--text-primary);
+  border-color: var(--accent);
+}
+
+/* Botón hamburguesa — oculto en desktop */
+.menu-toggle {
+  display:        none;
+  flex-direction: column;
+  justify-content: center;
+  align-items:    center;
+  gap:            5px;
+  width:          36px;
+  height:         36px;
+  background:     transparent;
+  border:         none;
+  cursor:         pointer;
+  padding:        4px;
+  border-radius:  var(--radius-sm);
+  transition:     background var(--transition);
+}
+
+.menu-toggle:hover {
+  background: var(--glass-border);
+}
+
+.bar {
+  display:       block;
+  width:         22px;
+  height:        2px;
+  background:    var(--text-primary);
+  border-radius: 2px;
+  transition:    transform var(--transition), opacity var(--transition);
+}
+
+
+/* ─── 3. HERO ────────────────────────────────────────────── */
+
+.hero {
+  min-height:     100vh;
+  padding:        calc(var(--nav-height) + 5rem) 2.5rem 5rem;
+  display:        flex;
+  align-items:    center;
+  gap:            4rem;
+  max-width:      1200px;
+  margin:         0 auto;
+}
+
+.hero-content {
+  flex:         1 1 480px;
+  display:      flex;
+  flex-direction: column;
+  gap:          1.5rem;
+}
+
+/* Renderizado literal de <span> dentro del h1 */
+.hero-content h1 {
+  font-size:     clamp(2.8rem, 6vw, 5rem);
+  font-weight:   800;
+  letter-spacing: -0.04em;
+  color:         var(--text-primary);
+  line-height:   1.05;
+}
+
+/* Span dentro del h1: visualmente destacado */
+.hero-content h1 span {
+  background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip:         text;
+}
+
+/* h2 como cita */
+.hero-content h2 {
+  font-size:   1.05rem;
+  font-weight: 400;
+  color:       var(--text-secondary);
+  font-style:  italic;
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  line-height: 1.5;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  color:     var(--text-secondary);
+  max-width: 480px;
+}
+
+/* Botones del Hero */
+.hero-buttons {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       1rem;
+  margin-top: 0.5rem;
+}
+
+
+/* ─── 4. BOTONES ─────────────────────────────────────────── */
+
+.btn {
+  display:        inline-flex;
+  align-items:    center;
+  justify-content: center;
+  gap:            0.4rem;
+  padding:        0.75rem 1.75rem;
+  border-radius:  999px;        /* Muy redondeado */
+  font-size:      0.9rem;
+  font-weight:    600;
+  letter-spacing: 0.02em;
+  cursor:         pointer;
+  border:         2px solid transparent;
+  transition:
+    background   var(--transition),
+    color        var(--transition),
+    border-color var(--transition),
+    box-shadow   var(--transition),
+    transform    var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background:  var(--accent);
+  color:       #fff;
+  border-color: var(--accent);
+  box-shadow:  0 4px 20px var(--accent-glow);
+}
+
+.btn-primary:hover {
+  background:   var(--accent-hover);
+  border-color: var(--accent-hover);
+  box-shadow:   0 6px 28px var(--accent-glow);
+}
+
+.btn-outline {
+  background:   transparent;
+  color:        var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-outline:hover {
+  background:   var(--accent-glow);
+  color:        #fff;
+  border-color: var(--accent);
+}
+
+/* Imagen del Hero */
+.hero-image {
+  flex:        1 1 380px;
+  display:     flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image img {
+  width:         100%;
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 0 0 1px var(--glass-border),
+    0 24px 60px rgba(0, 0, 0, 0.6);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.hero-image img:hover {
+  transform:  translateY(-6px);
+  box-shadow:
+    0 0 0 1px var(--accent-glow),
+    0 32px 80px rgba(0, 0, 0, 0.7);
+}
+
+
+/* ─── 5. SECCIÓN PORTFOLIO / NOTAS ───────────────────────── */
+
+.portfolio-section {
+  max-width:  1200px;
+  margin:     0 auto;
+  padding:    5rem 2.5rem;
+}
+
+.section-title {
+  font-size:     clamp(1.6rem, 3vw, 2.2rem);
+  font-weight:   800;
+  color:         var(--text-primary);
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.02em;
+
+  /* Línea decorativa debajo */
+  padding-bottom:  0.6rem;
+  border-bottom:   1px solid var(--glass-border);
+}
+
+/* Grid responsivo — auto-fit */
+.grid-container {
+  display:               grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap:                   1.75rem;
+}
+
+
+/* ─── 6. TARJETAS (glassmorphism estricto) ───────────────── */
+
+.card {
+  background:     var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border:         1px solid var(--glass-border);
+  border-radius:  var(--radius-md);
+  overflow:       hidden;
+  display:        flex;
+  flex-direction: column;
+  transition:
+    transform    var(--transition),
+    box-shadow   var(--transition),
+    border-color var(--transition);
+}
+
+.card:hover {
+  transform:    translateY(-6px);
+  box-shadow:   0 20px 50px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(79, 142, 247, 0.20);
+  border-color: rgba(79, 142, 247, 0.25);
+}
+
+/* Placeholder de imagen */
+.card-img {
+  width:      100%;
+  height:     200px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 22, 50, 0.9) 0%,
+    rgba(30, 40, 80, 0.7) 100%
+  );
+  position:   relative;
+  overflow:   hidden;
+}
+
+/* Efecto sutil de ruido sobre el placeholder */
+.card-img::after {
+  content:    '';
+  position:   absolute;
+  inset:      0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.015) 2px,
+    rgba(255,255,255,0.015) 4px
+  );
+}
+
+/* Variantes de placeholder — distintos tonos */
+.card-img.placeholder-1 {
+  background: linear-gradient(135deg, #0b1535 0%, #162150 60%, #1a2860 100%);
+}
+
+.card-img.placeholder-2 {
+  background: linear-gradient(135deg, #0a1a30 0%, #0f2545 60%, #152d55 100%);
+}
+
+/* Info de la tarjeta */
+.card-info {
+  padding:        1.5rem;
+  display:        flex;
+  flex-direction: column;
+  gap:            0.85rem;
+  flex:           1;
+}
+
+.card-info h3 {
+  font-size:   1.1rem;
+  font-weight: 600;
+  color:       var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.card-info p {
+  font-size: 0.88rem;
+  color:     var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* Tags / etiquetas */
+.tags {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       0.4rem;
+}
+
+.tags span {
+  display:       inline-block;
+  padding:       0.2rem 0.65rem;
+  font-size:     0.72rem;
+  font-weight:   600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  background:    rgba(79, 142, 247, 0.15);
+  color:         var(--accent);
+  border:        1px solid rgba(79, 142, 247, 0.25);
+  transition:    background var(--transition), color var(--transition);
+}
+
+.tags span:hover {
+  background: var(--accent);
+  color:      #fff;
+}
+
+/* Enlace de tarjeta */
+.btn-link {
+  display:     inline-flex;
+  align-items: center;
+  gap:         0.3rem;
+  font-size:   0.88rem;
+  font-weight: 600;
+  color:       var(--accent);
+  margin-top:  auto;
+  padding-top: 0.25rem;
+  transition:  color var(--transition), gap var(--transition);
+}
+
+.btn-link:hover {
+  color: var(--text-primary);
+  gap:   0.6rem;
+}
+
+
+/* ─── 7. PIE DE PÁGINA ───────────────────────────────────── */
+
+footer {
+  border-top:      1px solid var(--glass-border);
+  background:      var(--surface-dark);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.footer-container {
+  max-width:       1200px;
+  margin:          0 auto;
+  padding:         1.75rem 2.5rem;
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  flex-wrap:       wrap;
+  gap:             1rem;
+}
+
+.footer-container p {
+  font-size: 0.85rem;
+  color:     var(--text-secondary);
+}
+
+/* Social links */
+.social-links {
+  display: flex;
+  gap:     1.5rem;
+}
+
+.social-links a {
+  font-size:   0.85rem;
+  font-weight: 600;
+  color:       var(--text-secondary);
+  transition:  color var(--transition);
+}
+
+.social-links a:hover {
+  color: var(--accent);
+}
+
+
+/* ─── 8. SEPARADOR / DIVISOR ─────────────────────────────── */
+
+/* Útil para futuras páginas */
+.divider {
+  height:           1px;
+  background:       var(--glass-border);
+  margin:           3rem 0;
+}
+
+
+/* ─── 9. UTILIDADES ──────────────────────────────────────── */
+
+.text-accent   { color: var(--accent); }
+.text-muted    { color: var(--text-secondary); }
+.text-center   { text-align: center; }
+.mt-auto       { margin-top: auto; }
+.visually-hidden {
+  position: absolute;
+  width:    1px;
+  height:   1px;
+  overflow: hidden;
+  clip:     rect(0,0,0,0);
+}
+
+
+/* ─── 10. RESPONSIVE ─────────────────────────────────────── */
+
+@media (max-width: 768px) {
+
+  /* --- Navbar --- */
+  .navbar {
+    padding: 0 1.5rem;
+  }
+
+  /* Mostrar botón hamburguesa */
+  .menu-toggle {
+    display: flex;
+    order:   3;
+  }
+
+  /* Nav-links: menú vertical colapsable */
+  .nav-links {
+    position:       absolute;
+    top:            var(--nav-height);
+    left:           0;
+    right:          0;
+    flex-direction: column;
+    align-items:    flex-start;
+    gap:            0;
+    padding:        0;
+    max-height:     0;
+    overflow:       hidden;
+
+    background:     var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border-bottom:  1px solid var(--glass-border);
+
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                padding    0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Estado activo — manejado por script.js añadiendo .active */
+  .nav-links.active {
+    max-height: 300px;
+    padding:    1rem 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display:     block;
+    padding:     0.85rem 1.5rem;
+    border-bottom: none;
+    font-size:   1rem;
+  }
+
+  .nav-links a:hover {
+    background: rgba(79, 142, 247, 0.1);
+  }
+
+  /* --- Hero --- */
+  .hero {
+    flex-direction: column-reverse;
+    padding:        calc(var(--nav-height) + 3rem) 1.5rem 3.5rem;
+    gap:            2rem;
+  }
+
+  .hero-content,
+  .hero-image {
+    flex-basis: auto;
+    width:      100%;
+  }
+
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  /* --- Portfolio --- */
+  .portfolio-section {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Footer --- */
+  .footer-container {
+    flex-direction: column;
+    align-items:    flex-start;
+    padding:        1.5rem;
+  }
+/* ─── 10. RESPONSIVE ─────────────────────────────────────── */
+
+/* Pantallas Medianas y Tablets (Celulares grandes) */
+@media (max-width: 768px) {
+
+  /* --- Navbar --- */
+  .navbar {
+    padding: 0 1.5rem;
+  }
+
+  /* Mostrar botón hamburguesa */
+  .menu-toggle {
+    display: flex;
+    order:   3;
+  }
+
+  /* Nav-links: menú vertical colapsable */
+  .nav-links {
+    position:       absolute;
+    top:            var(--nav-height);
+    left:           0;
+    right:          0;
+    flex-direction: column;
+    align-items:    flex-start;
+    gap:            0;
+    padding:        0;
+    max-height:     0;
+    overflow:       hidden;
+
+    background:     var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border-bottom:  1px solid var(--glass-border);
+
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                padding    0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Estado activo — manejado por script.js añadiendo .active */
+  .nav-links.active {
+    max-height: 300px;
+    padding:    1rem 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display:     block;
+    padding:     0.85rem 1.5rem;
+    border-bottom: none;
+    font-size:   1rem;
+  }
+
+  .nav-links a:hover {
+    background: rgba(79, 142, 247, 0.1);
+  }
+
+  /* --- Hero --- */
+  .hero {
+    flex-direction: column-reverse;
+    padding:        calc(var(--nav-height) + 3rem) 1.5rem 3.5rem;
+    gap:            2rem;
+  }
+
+  .hero-content,
+  .hero-image {
+    flex-basis: auto;
+    width:      100%;
+  }
+
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  /* --- Portfolio --- */
+  .portfolio-section {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Footer --- */
+  .footer-container {
+    flex-direction: column;
+    align-items:    flex-start;
+    padding:        1.5rem;
+  }
+}
+} /* <- Aquí se cierra correctamente la de 768px */
+
+/* Pantallas Muy Pequeñas (Celulares) */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
