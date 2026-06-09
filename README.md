@@ -1,22 +1,30 @@
 # NablikM31.github.io
-A great page for the best notes of maths and physics
+
+A great page for the best notes of maths and physics.
+
+## 📁 Estructura del Proyecto (`mi-proyecto-nablik/`)
+
+A continuación se detalla la organización de los archivos y directorios del repositorio (basado en la estructura de `image_27d881.png`):
+
+```text
 mi-proyecto-nablik/
 │
-├── index.html            (Página de inicio principal)[cite: 1]
-├── yop.html              (Tu sección personal)[cite: 2]
-├── definiciones.html     (El menú principal de tus materias)
+├── index.html              
+├── yop.html                
+└── definiciones.html       
 │
-├── notas/                (¡AQUÍ VAN TUS 40 ARCHIVOS ORDENADOS!)
+├── notas/                  
 │   ├── algebra-lineal-1.html
 │   ├── calculo-iii-topologia.html
 │   ├── calculo-iii-derivadas.html
-│   └── ... (los otros 37 archivos de la carrera)
+│   └── . . . (los otros 37 archivos de la carrera)
 │
 ├── css/
-│   └── style.css         (Tus estilos espaciales y glassmorphism)
+│   └── style.css           
 │
 ├── js/
-│   └── script.js         (La interactividad del menú)
+│   └── script.js           
 │
 └── assets/
-    └── fondo.png         (Tu imagen del James Webb)[cite: 6]
+    └── fondo.png  
+|__ archivos/         
