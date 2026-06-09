@@ -8,18 +8,18 @@
 
 :root {
   /* Acentos */
-  --accent:          #4f8ef7;       /* Azul vibrante principal           */
-  --accent-glow:     #4f8ef730;     /* Azul con baja opacidad (glow)     */
-  --accent-hover:    #3a78e0;       /* Azul más oscuro en hover          */
+  --accent:          #ae4ff7;       /* Azul vibrante principal           */
+  --accent-glow:     #cd4ff730;     /* Azul con baja opacidad (glow)     */
+  --accent-hover:    #b93ae07b;       /* Azul más oscuro en hover          */
 
   /* Fondos glassmorphism */
-  --glass-bg:        rgba(15, 20, 40, 0.55);   /* Fondo oscuro semitransparente */
-  --glass-border:    rgba(255, 255, 255, 0.10); /* Borde sutil luminoso          */
+  --glass-bg:        rgba(31, 5, 55, 0.459);   /* Fondo oscuro semitransparente */
+  --glass-border:    rgba(21, 20, 20, 0.1); /* Borde sutil luminoso          */
   --glass-blur:      12px;
 
   /* Texto */
   --text-primary:    #f0f4ff;       /* Blanco ligeramente azulado        */
-  --text-secondary:  #8a9cc2;       /* Gris claro para textos de apoyo   */
+  --text-secondary:  #af8ac2;       /* Gris claro para textos de apoyo   */
 
   /* Superficies */
   --surface-dark:    rgba(8, 12, 28, 0.80);
